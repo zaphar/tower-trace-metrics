@@ -2,7 +2,9 @@
 name = "tower-trace-metrics"
 version = "0.1.0"
 edition = "2021"
-
+license = "Apache 2.0"
+author = "Jeremy Wall <jeremy@marzhillstudios.com"
+description = "A tower-http TraceLayer that records metrics per request"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
