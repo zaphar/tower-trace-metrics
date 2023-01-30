@@ -1,0 +1,15 @@
+[package]
+name = "tower-trace-metrics"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+metrics = "0.20.1"
+tracing = "0.1.35"
+http = "0.2.8"
+
+[dependencies.tower-http]
+version = "0.3.0"
+features = ["trace"]
