@@ -16,3 +16,17 @@
 # tower-trace-metrics
 
 A [tower-http](https://crates.io/crates/tower-http) `TraceLayer` that records metrics using the [metrics](https://crates.io/crates/metrics) facade.
+
+```rust
+use tower_trace_metrics::make_layer;
+use tower::ServiceBuilder;
+use bytes;
+
+
+fn main() {
+    let service = ServiceBuilder::new()
+        // Make a trace layer where the chunks are bytes::Bytes
+        .layer(make_layer(|b: &bytes::Bytes| b.len() as u64));
+    // ... Use this service in a Tower Middleware stack.
+}
+```
