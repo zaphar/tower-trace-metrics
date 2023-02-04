@@ -58,7 +58,7 @@ where
     pub labels: Arc<Mutex<Vec<Label>>>,
     /// The accumulator for the number of bytes on this request.
     pub size: Arc<AtomicU64>,
-    /// The mapper function to extract the size from a chunk in [OnBodyChunk<B>],
+    /// The mapper function to extract the size in bytes from a chunk in [OnBodyChunk<B>],
     pub chunk_len: Arc<F>,
     _phantom: PhantomData<B>,
 }
@@ -82,7 +82,7 @@ where
     F: Fn(&B) -> u64,
 {
     /// Construct a new [MetricsRecorder] using the installed [metrics::Recorder].
-    /// The function passed in is used to extract the size from the chunks in a
+    /// The function passed in is used to extract the size in bytes from the chunks in a
     /// response for all [OnBodyChunk] calls.
     pub fn new(f: F) -> Self {
         Self {
@@ -169,7 +169,7 @@ where
 }
 
 /// Construct a [TraceLayer] that will use an installed [metrics::Recorder] to record metrics per request.
-/// The provided [Fn] is used to extract the size from the chunks in a
+/// The provided [Fn] is used to extract the size in bytes from the chunks in a
 /// response for all [OnBodyChunk] calls.
 pub fn make_layer<B, F>(f: F) -> MetricsTraceLayer<B, F>
 where

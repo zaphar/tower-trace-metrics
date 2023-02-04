@@ -27,6 +27,15 @@ fn main() {
     let service = ServiceBuilder::new()
         // Make a trace layer where the chunks are bytes::Bytes
         .layer(make_layer(|b: &bytes::Bytes| b.len() as u64));
-    // ... Use this service in a Tower Middleware stack.
+    // ... Use this service in a Tower middleware stack.
 }
 ```
+
+## Recorded Metrics
+
+* http_request_counter The total count of all requests
+* http_request_failure_counter The total count of all request failures
+* http_request_size_bytes_hist A histogram of request size in bytes
+* http_request_request_time_micros_hist A histogram of request time in microseconds
+
+Each metric is faceted by `path`, `method`, and `host` for the request.
